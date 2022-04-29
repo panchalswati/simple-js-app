@@ -13,6 +13,18 @@ const pokemonRepository = (function () {
       category: 'Seed'
     },
     {
+      name: 'Wartortle',
+      height: 3,
+      types: ['water'],
+      category: 'Turtle'
+    },
+    {
+      name: 'Caterpie',
+      height: 1,
+      types: ['bug'],
+      category: 'Worm'
+    },
+    {
       name: 'Venusaur',
       height: 6,
       types: ['grass', 'poison'],
@@ -46,6 +58,14 @@ const pokemonRepository = (function () {
 console.log(pokemonRepository.getAll())
 pokemonRepository.add({ name: 'Butterfree', height: 3, types: ['bug', 'flying'], category: 'Butterfly' })
 console.log(pokemonRepository.getAll())
+
+pokemonRepository.getAll().forEach(function (pokemon) {
+  if (pokemon.height > 5) {
+    document.write('<p class="special">' + pokemon.name, '(height: ' + pokemon.height + ')-Wow!-that\'s big</p>')
+  } else {
+    document.write('<p>' + pokemon.name, '(height: ' + pokemon.height + ')</p>')
+  }
+})
 // Bonus Task
 Object.keys(pokemonRepository).forEach(function (item) {
   console.log(pokemonRepository[item])
