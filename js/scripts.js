@@ -43,30 +43,31 @@ const pokemonRepository = (function () {
       category: 'Flame'
     }
   ]
-  function add (pokemon) {
-    pokemonList.push(pokemon)
-  }
-
-  function getAll () {
-    return pokemonList
-  }
-  return {
-    add: add,
-    getAll: getAll
-  }
-})()
-console.log(pokemonRepository.getAll())
-pokemonRepository.add({ name: 'Butterfree', height: 3, types: ['bug', 'flying'], category: 'Butterfly' })
-console.log(pokemonRepository.getAll())
-
+    add = (pokemon) => pokemonList.push(pokemon);
+    getAll = () => pokemonList;
+    function addListItem(pokemon) {
+        const list = document.querySelector('.pokemon-list');
+        const listItem = document.createElement('li');
+        const button = document.createElement('button');
+        button.innerText = pokemon.name;
+        button.classList.add('highlights-name');
+        listItem.appendChild(button);
+        list.appendChild(listItem);
+        addEvent(button, pokemon);
+    }
+    function addEvent(button, pokemon) {
+        button.addEventListener('click', function () {
+            showDetails(pokemon);
+        })
+    }
+    function showDetails(pokemon) {
+        console.log(pokemon);
+    }
+    return {
+        add, getAll, addListItem,showDetails,addEvent
+    };
+})();
 pokemonRepository.getAll().forEach(function (pokemon) {
-  if (pokemon.height > 5) {
-    document.write('<p class="special">' + pokemon.name, '(height: ' + pokemon.height + ')-Wow!-that\'s big</p>')
-  } else {
-    document.write('<p>' + pokemon.name, '(height: ' + pokemon.height + ')</p>')
-  }
-})
-// Bonus Task
-Object.keys(pokemonRepository).forEach(function (item) {
-  console.log(pokemonRepository[item])
-})
+    pokemonRepository.addListItem(pokemon);
+});
+
