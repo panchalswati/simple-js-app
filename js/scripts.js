@@ -25,11 +25,13 @@ const pokemonRepository = (function () {
         })
     }
 
+    //implementing modal
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function () {
             showModal(pokemon);
         });
     }
+        
     function loadDetails(pokemon) {
         let url = pokemon.detailsUrl;
         return fetch(url).then(function (response) {
@@ -43,7 +45,8 @@ const pokemonRepository = (function () {
             console.error(e);
         });
     }
-    
+
+    //function to fetch external data
     function loadList(pokemon) {
         return fetch(apiUrl).then(function (response) {
             return response.json();
@@ -90,6 +93,7 @@ const pokemonRepository = (function () {
             }
         })
 
+        //external image to modal
         let imageElement = document.createElement('img');
         imageElement.classList.add('modal-image');
         imageElement.src = pokemon.imageUrl;
