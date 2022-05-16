@@ -14,20 +14,24 @@ body {
 p {
     text-align: left;
 }
-
+.page-btn{
+    width:100px;
+    height:40px;
+    background-color: aliceblue;
+    margin-right:10px;
+}
 .highlights-name {
     display: block;
-    width: 350px;
-    height: 80px;
+    width: 250px;
+    height: 60px;
     line-height: 50px;
     background-color: darkgray;
     color: black;
-    font-size: 20px;
+    font-size: 15px;
     text-transform: uppercase;
     font-weight: bold;
     border-style: ridge;
-    display: inline-block;
-    margin: 4px 2px;
+    margin: 4px 10px;
     border-block: outset;
     text-decoration: none;
     cursor: pointer;
@@ -40,20 +44,27 @@ p {
     text-align: center;
 }
 
+.modal-header {
+    padding: 25px;
+}
+
+.modal-content {
+    width: 350px;
+    height: auto;
+    margin: 20px;
+    padding: 20px;
+}
+
 nav {
     height: 100px;
     background-color: blueviolet;
 }
 
-.modal-content {
-    width: 600px;
-    height: auto;
-    overflow: auto;
-    max-width: 100%;
-}
-
-
 .img {
     width: 130px;
     margin-left: 40px;
+}
+
+.pokemon-list {
+    display: flex;
 }
