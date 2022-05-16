@@ -1,8 +1,14 @@
 const pokemonRepository = (function () {
     const pokemonList = [];
     // loading external data
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-    let modalContainer = document.querySelector('#modal-container');
+    
+    const searchInput = document.querySelector('#myInput');
+    const prevBtn = document.getElementById("prevbtn");
+    const nextBtn = document.getElementById("nextbtn");
+    let PREV_URL = null;
+    let NEXT_URL = null;
+
+    searchInput.addEventListener('input', search);
 
     add = (pokemon) => pokemonList.push(pokemon);
 
@@ -44,16 +50,20 @@ const pokemonRepository = (function () {
             pokemon.height = details.height;
             pokemon.weight = details.weight;
             pokemon.types = details.types;
+            pokemon.nextButton = details.next;
+            pokemon.previousButton = details.previous;
 
         }).catch(function (e) {
             console.error(e);
         });
     }
 
-    function loadList(pokemon) {
+    function loadList(apiUrl) {
         return fetch(apiUrl).then(function (response) {
             return response.json();
         }).then(function (json) {
+            PREV_URL = json.previous;
+            NEXT_URL = json.next;
             json.results.forEach(function (item) {
                 let pokemon = {
                     name: item.name,
@@ -67,6 +77,61 @@ const pokemonRepository = (function () {
         });
     }
 
+    function clearList() {
+        const list = document.querySelector('.pokemon-list');
+        list.innerHTML = "";
+        pokemonList.length = 0;
+        
+    }
+
+    // If the prev or next url is null, then disable the button
+    prevBtn.addEventListener('click', getPrev);
+    function getPrev(e) {
+       
+        if(PREV_URL==null){
+            prevBtn.disabled=true;
+        }
+        else{
+            clearList()
+            loadList(PREV_URL).then(function () {
+                getAll().forEach(function (pokemon) {
+                    addListItem(pokemon);
+                })
+            })
+
+        }
+    }
+
+
+    nextBtn.addEventListener('click', getNext);
+    function getNext(e) {
+        if(NEXT_URL==null){
+            nextBtn.disabled=true;
+        }
+        else{
+            clearList()
+            loadList(NEXT_URL).then(function () {
+                getAll().forEach(function (pokemon) {
+                    addListItem(pokemon);
+                })
+            })
+        }
+        
+    }
+
+    function search(e) {
+        const keyword = e.target.value;
+        const pokeList = document.querySelectorAll("li");
+        pokeList.forEach(p => {
+            if (p.innerText.toUpperCase().includes(keyword.toUpperCase())) {
+                p.style.display = "block";
+            }
+            else {
+                p.style.display = "none";
+            }
+        })
+    }
+
     // showModal function
     function showModal(pokemon) {
         let modalTitle = $('.modal-title');
@@ -78,6 +143,7 @@ const pokemonRepository = (function () {
         imageElementFront.attr("src", pokemon.imageUrlFront);
         let imageElementBack = $('<img class=\'pokemon-modal-image\'>');
         imageElementBack.attr("src", pokemon.imageUrlBack);
+        let typeTextElement = $("<p>" + "Types: " + "</p>");
         let typeElement = document.createElement('p');
         pokemon.types.forEach((type, index) => {
             if (index === pokemon.types.length - 1) {
@@ -86,6 +152,7 @@ const pokemonRepository = (function () {
                 typeElement.innerText += type.type.name + ", ";
             }
         })
+
         modalTitle.empty();
         modalBody.empty();;
         modalTitle.append(pokemonName);
@@ -93,14 +160,17 @@ const pokemonRepository = (function () {
         modalBody.append(imageElementBack);
         modalBody.append(pokemonHeight);
         modalBody.append(pokemonWeight);
-        modalBody.append(typeElement);
+        modalBody.append(typeTextElement);
     }
 
     return {
         add, getAll, addListItem, showDetails, addEvent, loadList, loadDetails,
     }
 })();
-pokemonRepository.loadList().then(function () {
+
+const apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=28';
+// This duplicating so create func and reuse
+pokemonRepository.loadList(apiUrl).then(function () {
     pokemonRepository.getAll().forEach(function (pokemon) {
         pokemonRepository.addListItem(pokemon);
     })
