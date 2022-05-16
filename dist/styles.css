@@ -25,7 +25,7 @@ p {
     text-transform: uppercase;
     font-weight: bold;
     border-style: ridge;
-    display: inline-block;
+    display: block;
     margin: 4px 2px;
     border-block: outset;
     text-decoration: none;
