@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Simple js project</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="dist/mint/styles.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
     <header class="page-header">
         <nav class="navbar navbar-dark ">
@@ -14,7 +17,8 @@
                 <img src="img/pokemon.png" alt="logo" class="img">
             </a>
             <form class="form-inline">
-                <input class="form-control rounded" id="myInput" type="search" placeholder="Search" aria-label="Search" />
+                <input class="form-control rounded" id="myInput" type="search" placeholder="Search"
+                    aria-label="Search" />
             </form>
             <div class="sr-only">Navigation bar</div>
         </nav>
@@ -23,17 +27,19 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <ul class="pokemon-list list-unstyled flex-row flex-wrap w-100 just-content: center" data-toggle="modal" data-target="#pokemonModal"></ul>
+                    <ul class="pokemon-list list-unstyled flex-row flex-wrap w-100 just-content: center"
+                        data-toggle="modal" data-target="#pokemonModal"></ul>
                 </div>
             </div>
-                <div id="page-container">
-                    <button class="page-btn" id="prevbtn">Prev</button>
-                    <button class="page-btn" id="nextbtn">Next</button>
-                </div>
+            <div id="page-container">
+                <button class="page-btn" id="prevbtn">Prev</button>
+                <button class="page-btn" id="nextbtn">Next</button>
+            </div>
         </div>
         </div>
         <div class="sr-only">list of pokemon</div>
-        <div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -48,14 +54,18 @@
     </main>
     <strong>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-                crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
         <script src="js/promise-polyfill.js"></script>
         <script src="js/fetch-polyfill.js"></script>
         <script src="dist/mint/scripts.js"></script>
     </strong>
 
 </body>
+
 </html>

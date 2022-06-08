@@ -14,12 +14,14 @@ body {
 p {
     text-align: left;
 }
-.page-btn{
-    width:100px;
-    height:40px;
+
+.page-btn {
+    width: 100px;
+    height: 40px;
     background-color: aliceblue;
-    margin-right:10px;
+    margin-right: 10px;
 }
+
 .highlights-name {
     display: block;
     width: 250px;
