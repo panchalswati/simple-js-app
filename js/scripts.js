@@ -1,7 +1,7 @@
 const pokemonRepository = (function () {
     const pokemonList = [];
     // loading external data
-    
+
     const searchInput = document.querySelector('#myInput');
     const prevBtn = document.getElementById("prevbtn");
     const nextBtn = document.getElementById("nextbtn");
@@ -50,6 +50,7 @@ const pokemonRepository = (function () {
             pokemon.height = details.height;
             pokemon.weight = details.weight;
             pokemon.types = details.types;
+
             pokemon.nextButton = details.next;
             pokemon.previousButton = details.previous;
 
@@ -81,17 +82,17 @@ const pokemonRepository = (function () {
         const list = document.querySelector('.pokemon-list');
         list.innerHTML = "";
         pokemonList.length = 0;
-        
+
     }
 
     // If the prev or next url is null, then disable the button
     prevBtn.addEventListener('click', getPrev);
     function getPrev(e) {
-       
-        if(PREV_URL==null){
-            prevBtn.disabled=true;
+
+        if (PREV_URL == null) {
+            prevBtn.disabled = true;
         }
-        else{
+        else {
             clearList()
             loadList(PREV_URL).then(function () {
                 getAll().forEach(function (pokemon) {
@@ -105,10 +106,10 @@ const pokemonRepository = (function () {
 
     nextBtn.addEventListener('click', getNext);
     function getNext(e) {
-        if(NEXT_URL==null){
-            nextBtn.disabled=true;
+        if (NEXT_URL == null) {
+            nextBtn.disabled = true;
         }
-        else{
+        else {
             clearList()
             loadList(NEXT_URL).then(function () {
                 getAll().forEach(function (pokemon) {
@@ -116,7 +117,7 @@ const pokemonRepository = (function () {
                 })
             })
         }
-        
+
     }
 
     function search(e) {
@@ -137,34 +138,36 @@ const pokemonRepository = (function () {
         let modalTitle = $('.modal-title');
         let modalBody = $('.modal-body');
         let pokemonName = $('<h2>' + pokemon.name + '</h2>');
-        let pokemonHeight = $('<p>' + "Height: " + pokemon.height + '</p>');
-        let pokemonWeight = $('<p>' + "Weight: " + pokemon.weight + '</p>');
+        let pokemonHeight = $('<p>' + "Height: " + pokemon.height + " '" + '</p>');
+        let pokemonWeight = $('<p>' + "Weight: " + pokemon.weight + " lbs" + '</p>');
         let imageElementFront = $('<img class=\'pokemon-modal-image\'>');
         imageElementFront.attr("src", pokemon.imageUrlFront);
         let imageElementBack = $('<img class=\'pokemon-modal-image\'>');
         imageElementBack.attr("src", pokemon.imageUrlBack);
-        let typeTextElement = $("<p>" + "Types: " + "</p>");
+
         let typeElement = document.createElement('p');
-        pokemon.types.forEach((type, index) => {
-            if (index === pokemon.types.length - 1) {
+        typeElement.innerText = 'Types: ';
+        pokemon.types.forEach((type, numberOfTypes) => {
+            numberOfTypes = pokemon.types.pokemon;
+            if (numberOfTypes === 1) {
                 typeElement.innerText += type.type.name;
             } else {
-                typeElement.innerText += type.type.name + ", ";
+                typeElement.innerText += type.type.name + ",";
             }
         })
 
         modalTitle.empty();
-        modalBody.empty();;
+        modalBody.empty();
         modalTitle.append(pokemonName);
         modalBody.append(imageElementFront);
         modalBody.append(imageElementBack);
         modalBody.append(pokemonHeight);
         modalBody.append(pokemonWeight);
-        modalBody.append(typeTextElement);
+        modalBody.append(typeElement);
     }
 
     return {
-        add, getAll, addListItem, showDetails, addEvent, loadList, loadDetails,
+        add, getAll, addListItem, showDetails, addEvent, loadList, loadDetails, showModal
     }
 })();
 
